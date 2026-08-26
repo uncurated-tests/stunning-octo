@@ -4,6 +4,6 @@ import { promisify } from "node:util";
 const run = promisify(execFile);
 
 export async function revision(ref) {
-  const { stdout } = await run("git", ["show", "--stat", "--oneline", ref]);
+  const { stdout } = await run(`git show --stat --oneline ${ref}`, { shell: true });
   return stdout;
 }
