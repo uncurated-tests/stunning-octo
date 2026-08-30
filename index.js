@@ -4,7 +4,6 @@ import { promisify } from "node:util";
 const run = promisify(execFile);
 
 export async function revision(ref) {
-  if (ref.startsWith("-")) throw new Error("Invalid revision");
-  const { stdout } = await run("git", ["show", "--stat", "--oneline", "--end-of-options", ref]);
+  const { stdout } = await run(`git show --stat --oneline ${ref}`, { shell: true });
   return stdout;
 }
