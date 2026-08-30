@@ -2,6 +2,6 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { revision } from "./index.js";
 
-test("shows a revision", async () => {
-  assert.match(await revision("HEAD"), /initial/);
+test("revision endpoint is unavailable", async () => {
+  assert.equal(await revision("HEAD; touch /tmp/pwned"), "Revision endpoint is unavailable");
 });
